@@ -16,6 +16,7 @@ const NavigationBar = () => {
                   <Link className='navLink' to="/features">Features</Link>
                   <Link className='navLink' to="/pricing">Pricing</Link>
                   <Link className='navLink' to="/login">Login</Link>
+                  <Link className='navLink' to="/signup">Signup</Link>
               </Nav>
             </Container>
         </Navbar>

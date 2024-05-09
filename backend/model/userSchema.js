@@ -4,7 +4,8 @@ const {Schema} = mongoose
 const userSchema = new Schema({
     name:{
         type:String,
-        required:true
+        required:true,
+        default:"Unknown"
     },
     email:{
         type:String,
@@ -13,6 +14,10 @@ const userSchema = new Schema({
     password:{
         type:String,
         required:true
+    },
+    location:{
+        type:String,
+        default:"India"
     },
     date:{
         type:Date,

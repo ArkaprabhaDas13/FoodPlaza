@@ -9,13 +9,13 @@ router.get('/', async(req, res)=>{
 })
 
 router.post('/', async(req, res)=>{
-    const {name, categoryName, imgPath, description, price} = req.body
-    try{
-        const food = await Food.create({name, categoryName, imgPath, description, price})
-        return res.status(200).json(food)
-    }catch(error){
-        console.error("Error in POST request !!!",error)
-    }
+    // const {name, categoryName, imgPath, description, price} = req.body
+    // try{
+    //     const food = await Food.create({name, categoryName, imgPath, description, price})
+    //     return res.status(200).json(food)
+    // }catch(error){
+    //     console.error("Error in POST request !!!",error)
+    // }
 })
 
 module.exports = router
