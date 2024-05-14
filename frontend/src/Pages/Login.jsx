@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(false)
 
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -19,11 +20,26 @@ const Login = () => {
       if(response)
       {
         console.log("Response Received..")
-        console.log(response)
+        console.log("Response = ",response)
+        console.log("Response.DATA: ",response.data)
+
+        if(response.data.message != "User not found !!")
+        { 
+          // Here we are storing the TOKEN in the LOCALSTORAGE
+          localStorage.setItem("authToken",response.data.authToken)
+          console.log(localStorage.getItem("authToken"))
+          navigate("/") 
+          setError(false)
+        }
+        else{
+          setEmail('')
+          setPassword('')
+          setError(true)
+          return(<p>Login Unsuccessful</p>)
+        }
       }
-      else{   
-        
-        console.log("Enter valid creds!")
+      else{
+        console.log("Error in fetching 'response' variable VALUE!!")
       }
     } catch (error) {
       console.log("ERROR in POST request !!", error)
@@ -46,6 +62,9 @@ const Login = () => {
         </div>
         <div>
           <Link to='/signup' style={{ textDecoration: 'none' }}> Create an account </Link>
+        </div>
+        <div>
+          {error && <p style={{color:'red', fontWeight:'bold'}}>Wrong Login Credentials !</p>}
         </div>
       </form>
 

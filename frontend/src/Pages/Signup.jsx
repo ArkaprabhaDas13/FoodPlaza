@@ -6,6 +6,7 @@ import axios from 'axios'
 
 const Signup = () => {
 
+    const navigate = useNavigate()
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] =  useState('')
@@ -17,6 +18,8 @@ const Signup = () => {
             const response = await axios.post('http://localhost:3000/createUser', {name, password, email, location})
             console.log("Successfully POSTED!")
             console.log(response)
+            navigate("/")
+
         }catch(error){
             console.log("ERROR in POST request !!", error)
         }

@@ -13,8 +13,7 @@ const NavigationBar = () => {
               <Link className='navLink' to="/"> <h1>CompanyName</h1> </Link>
               <Nav className="me-auto">
                   <Link className='navLink' to="/">Home</Link>
-                  <Link className='navLink' to="/features">Features</Link>
-                  <Link className='navLink' to="/pricing">Pricing</Link>
+                  <Link className='navLink' to="/addFood">Add Food Item</Link>
                   <Link className='navLink' to="/login">Login</Link>
                   <Link className='navLink' to="/signup">Signup</Link>
               </Nav>
