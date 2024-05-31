@@ -41,7 +41,7 @@ const Signup = () => {
                     <input type="text" value={location} className="form-control" onChange={(e)=>{setLocation(e.target.value)}} placeholder="Location" aria-label="Location" aria-describedby="basic-addon1" />
                 </div>
                 <div>
-                    <Button type='submit'>Signup</Button>
+                    <Button className='btn btn-success' type='submit'>Signup</Button>
                 </div>
                 <div>
                     <Link to='/login' style={{textDecoration:'none'}}> Already a User </Link>

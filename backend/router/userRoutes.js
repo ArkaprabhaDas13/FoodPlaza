@@ -23,7 +23,8 @@ userRouter.post('/createUser', body('email').isEmail(), body('password').isLengt
     const errors = validationResult(req)
     console.log(errors)
 
-    // This is the normal User.create() section... The validation is occuring before inserting into DB
+    // This is the normal User.create() section... The validation is occuring before inserting into DB 
+
     if (!errors.isEmpty()) {
         return res.status(400).json({ 'message': "Enter valid credentials" });
     }
@@ -68,7 +69,7 @@ userRouter.post('/loginUser', body('email').isEmail(), body('password').isLength
         if (user){
 
             // Checking if the hashed password matches with the entered password
-            console.log("password = ", password)
+            // console.log("password = ", password)
             const result = await bcrypt.compare(password, user.password)
             console.log("BcryptJS RESULT = ",result)
              

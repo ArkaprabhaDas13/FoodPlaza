@@ -5,6 +5,7 @@ import CardComponent from '../Components/CardComponent';
 import CarouselComponent from '../Components/CarouselComponent'
 import Carousel from 'react-bootstrap/Carousel';
 import axios from 'axios';
+import { CartProvider } from '../Components/ContextReducer';
 
 const Home = () => {
 
@@ -45,8 +46,11 @@ const Home = () => {
                         />
                         <Carousel.Caption>
                             <div className="form-inline my-2 my-lg-0 justify-content-center">
+
                                 {/* SEARCH NOT WORKING !!!! */}
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
+                                {/* RESOLVED : We have to put it for every individual Carousel */}
+
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value); console.log(search) }} />
                                 <button style={{ color: "white" }} className="btn bg-success btn-outline-success m-2 my-2 my-sm-0" type="submit">Search</button>
                             </div>
                         </Carousel.Caption>
@@ -59,7 +63,7 @@ const Home = () => {
                         />
                         <Carousel.Caption>
                             <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value); console.log(search) }} />
                                 <button style={{ color: "white" }} className="btn bg-success btn-outline-success m-2 my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </Carousel.Caption>
@@ -72,7 +76,7 @@ const Home = () => {
                         />
                         <Carousel.Caption>
                             <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value); console.log(search) }} />
                                 <button style={{ color: "white" }} className="btn bg-success btn-outline-success m-2 my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </Carousel.Caption>
@@ -88,21 +92,26 @@ const Home = () => {
                         <h1 className=''>{data.categoryName}</h1>
                         <hr />
 
-                        {foodData != [] ? foodData.filter((food) => (food.categoryName == data.categoryName) && (food.name.toLowerCase().includes(search.toLocaleLowerCase())))
-                        .map((filterItem) => {
-                            return (
-                                <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
-                                    {filterItem.name}
-                                    <CardComponent foodName={filterItem.name} img={filterItem.imgPath} price={filterItem.price} />
-                                </div>
-                            )
-                        }) : <div>No such data found</div>}
+                        {foodData != [] ? 
+                            foodData.filter((food) => (food.categoryName == data.categoryName) && (food.name.toLowerCase().includes(search.toLocaleLowerCase())))
+                                .map((filterItem) => {
+                                    return (
+                                        <div key={filterItem._id} className='col-12 col-md-6 col-lg-3'>
+                                            {filterItem.name}
+                                            <CardComponent foodItems={filterItem} />
+                                        </div>
+                                    )
+                                }) 
+                            : 
+                            <div>No such data found</div>
+                        }
 
                     </div>
                     )
                 })
                     :
-                    <div>Empty</div>}
+                    <div>Empty</div>
+                }
             </div>
 
             {/* <div><CardComponent /></div> */}
